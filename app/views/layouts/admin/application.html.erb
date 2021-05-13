@@ -13,16 +13,25 @@
     <header>
       <nav>
         <div>
-          <%= link_to "LOGO", root_path %>
-          <div class="container">
+          <%= link_to "LOGO", admin_root_path %>
+          <div>
             <ul>
-              <li class="nav-item">商品一覧</li>
-              <li class="nav-item">
+              <% if admin_signed_in? %>
+              <li>会員一覧</li>
+              <li>注文履歴一覧</li>
+              <li>ジャンル一覧</li>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+              <% else %>
+              <li>商品一覧</li>
+              <li>
                 <%= link_to "新規登録", new_end_user_registration_path %>
               </li>
-              <li class="nav-item">
+              <li>
                 <%= link_to "ログイン", new_end_user_session_path %>
               </li>
+              <% end %>
             </ul>
           </div>
         </div>
