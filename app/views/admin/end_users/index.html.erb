@@ -1,0 +1,25 @@
+<p>会員一覧</p><!--以下の内容が表示されること-->
+<table>
+    <thead>
+        <tr>
+            <td>会員ID</td>
+            <td>氏名</td>
+            <td>メールアドレス</td>
+            <td>ステータス</td>
+        </tr>
+    </thead>
+    <% @users.each do |user| %>
+    <tbody>
+        <tr>
+            <td><%= user.id %></td>
+            <td><%= user.first_name %><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <% if user.is_unsubscribed == true %>
+            <td>退会</td>
+            <% else %>
+            <td>有効</td>
+            <% end %>
+        </tr>
+    </tbody>
+    <% end %>
+</table>
