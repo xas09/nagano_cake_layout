@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :end_users, only: [:index] 
+    resources :items, except: [:destroy]
+    resources :genres, only: [:index, :create, :edit, :udpate]
   end
+  
   scope module: :public do
     root to: 'homes#top'
     get "/end_users/mypage" => "end_users#show"
@@ -22,5 +25,7 @@ Rails.application.routes.draw do
     patch "/end_users/mypage" => "end_users#update"
     get "/end_users/mypage/confirm" => "end_users#confirm"
     patch "/end_users/mypage/unsubscribe" => "end_users#unsubscribe" 
+    resources :items, only: [:index, :show]
   end
+  
 end
