@@ -1,2 +1,8 @@
-ジャンル登録と同じように、編集フォームを作成する
-編集後はジャンル一覧ページに遷移
+<p>ジャンル編集</p>
+<%= form_with model:@genre, url:admin_genre_path(@genre), local:true do |f| %>
+<div>
+  <label>ジャンル名</label>
+  <%= f.text_field :name %>
+  <%= f.submit "変更を保存", class:"btn btn-sm btn-success" %>
+</div>
+<% end %>

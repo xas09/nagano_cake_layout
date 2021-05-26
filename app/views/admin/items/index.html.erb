@@ -1,8 +1,30 @@
-管理者側のヘッダーに、商品一覧のリンクを追加する
-以下の内容が表示されること
-商品id
-商品名
-税抜価格
-ジャンル
-販売ステータス
-商品新規登録ページへのリンク: ワイヤーでは+ですが変更していただいても構いません。
+<p>商品一覧</p>
+<%= link_to "商品新規登録", new_admin_item_path %>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <td>商品ID</td>
+                <td>商品名</td>
+                <td>税抜価格</td>
+                <td>ジャンル</td>
+                <td>ステータス</td>
+            </tr>
+        </thead>
+        <tbody>
+            <%= @items.each do |item| %>
+            <tr>
+                <td><%= item.id %></td>
+                <td><%= item.name %></td>
+                <td><%= item.price_without_tax %></td>
+                <td><%= item.genre_id.name %></td>
+                <% if item.is_unavailable == false %>
+                <td>販売中</td>
+                <% else %>
+                <td>販売停止中</td>
+                <% end %>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

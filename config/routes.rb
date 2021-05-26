@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :end_users, only: [:index] 
     resources :items, except: [:destroy]
-    resources :genres, only: [:index, :create, :edit, :udpate]
+    resources :genres, only: [:index, :create, :edit, :update]
   end
   
   scope module: :public do
