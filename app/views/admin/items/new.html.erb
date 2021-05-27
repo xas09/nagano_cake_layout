@@ -1,8 +1,8 @@
 <p>商品新規登録</p>
-<%= form_with model:@newitem, url:new_admin_item_path, local:true do |f| %>
+<%= form_with model:@newitem, url:admin_items_path, local:true do |f| %>
 <div>
     <label>商品画像</label>
-    < %= f.attachment_field :image_id, placeholder: "画像を選択" %>
+    <%= f.attachment_field :image %>
 </div>
 <div>
     <label>商品名</label>
@@ -14,6 +14,7 @@
 </div>
 <div>
     <label>ジャンル</label>
+    <%= f.collection_select :genre_id, Genre.all, :id, :name %>
 </div>
 <div>
     <label>税抜価格</label>
@@ -21,17 +22,10 @@
 </div>
 <div>
     <label>販売ステータス</label>
+    <label><%= f.radio_button :is_unavailable, "FALSE" %>販売中</label>
+    <label><%= f.radio_button :is_unavailable, "TRUE" %>販売停止中</label>
 </div>
 <div>
     <%= f.submit "新規登録", class:"btn btn-sm btn-success" %>
 </div>
 <% end %>
-<!--form_for, form_withのいずれかを用いて商品登録フォームを作成する-->
-<!--以下の入力欄を設けること-->
-<!--商品画像: 画像選択-->
-<!--タイトル: テキスト入力-->
-<!--説明文: テキスト入力-->
-<!--ジャンル名: プルダウン、登録したジャンルを表示すること-->
-<!--値段: テキスト入力-->
-<!--販売ステータス(販売中/販売停止中): ラジオボタン-->
-<!--商品登録後は管理者の商品詳細画面に遷移すること-->
