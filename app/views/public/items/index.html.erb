@@ -3,10 +3,12 @@
 <div>
     <div>
         <div>
+            <%= link_to item_path(item) do %>
             <%= attachment_image_tag item, :image, :fill, 100, 100 %> 
+            <% end %>
         </div>
         <div>
-            <%= item.name %>
+            <%= link_to item.name, item_path(item) %>
         </div>
         <div>
             ¥<%= 1.1*item.price_without_tax %>
@@ -14,9 +16,3 @@
     </div>
 </div>
 <% end %>
-<!--管理者側で登録したデータを表示する。-->
-<!--以下の内容が表示されること-->
-<!--商品画像-->
-<!--商品名-->
-<!--税込価格-->
-<!--ページネーション、左のジャンル検索機能は不要-->

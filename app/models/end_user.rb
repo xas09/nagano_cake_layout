@@ -13,6 +13,9 @@ class EndUser < ApplicationRecord
     validates :address
     validates :phone_number
   end
+  
+  has_many :cart_items, dependent: :destroy 
+  
 
   def active_for_authentication?
     super && (self.is_unsubscribed == false)

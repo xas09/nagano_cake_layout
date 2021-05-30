@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'cart_items/index'
   devise_for :admin, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
@@ -26,6 +27,8 @@ Rails.application.routes.draw do
     get "/end_users/mypage/confirm" => "end_users#confirm"
     patch "/end_users/mypage/unsubscribe" => "end_users#unsubscribe" 
     resources :items, only: [:index, :show]
+    delete "cart_items/destroy_all" => "cart_items#destroy_all"
+    resources :cart_items, only: [:index, :create, :update, :destroy]
   end
   
 end
