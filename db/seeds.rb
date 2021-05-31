@@ -9,3 +9,26 @@ Admin.create!(
     email: "Admin@a",
     password: "aaaaaa"
 )
+
+Genre.create(name: "ケーキ")
+Genre.create(name: "クッキー")
+Genre.create(name: "チョコレート")
+    
+Item.create!(
+    genre_id: "1", 
+    name: "ショートケーキ", 
+    price_without_tax: "500", 
+    introduction: "イチゴのショートケーキです", 
+    )
+Item.create!(
+    genre_id: "2", 
+    name: "チャンククッキー", 
+    price_without_tax: "300", 
+    introduction: "チョコ入りクッキー", 
+    )
+Item.create!(
+    genre_id: "3", 
+    name: "カカオ", 
+    price_without_tax: "400", 
+    introduction: "カカオ豆", 
+    )

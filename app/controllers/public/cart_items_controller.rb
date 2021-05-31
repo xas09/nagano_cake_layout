@@ -6,14 +6,16 @@ class Public::CartItemsController < Public::ApplicationController
   end
   
   def create
-    # if current_end_user.cart_item.find_by(item_id: params[:cart_item][:item_id]).present?
-    #   redirect_to cart_item_path()
-    # else
+    if (current_end_user.cart_items.find_by(item_id: params[:cart_item][:item_id]).present? == true )
+      @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
+      @cart_item.update(amount: @cart_item.amount += (params[:cart_item][:amount]).to_i)
+      redirect_to cart_items_path
+    else
       @new_cart_item = CartItem.new(cart_item_params)
       @new_cart_item.end_user_id = current_end_user.id
       @new_cart_item.save
       redirect_to cart_items_path
-    # end
+    end
   end
   
   def update
