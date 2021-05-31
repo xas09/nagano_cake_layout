@@ -19,16 +19,19 @@ Item.create!(
     name: "ショートケーキ", 
     price_without_tax: "500", 
     introduction: "イチゴのショートケーキです", 
+    image: File.open("./app/assets/images/image1.jpg")
     )
 Item.create!(
     genre_id: "2", 
     name: "チャンククッキー", 
     price_without_tax: "300", 
     introduction: "チョコ入りクッキー", 
+    image: File.open("./app/assets/images/image2.jpg")
     )
 Item.create!(
     genre_id: "3", 
     name: "カカオ", 
     price_without_tax: "400", 
     introduction: "カカオ豆", 
+    image: File.open("./app/assets/images/image3.jpg")
     )
