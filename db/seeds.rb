@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(
-    email: "Admin@a",
+    email: "Admin@aa",
     password: "aaaaaa"
 )
 
@@ -34,4 +34,11 @@ Item.create!(
     price_without_tax: "400", 
     introduction: "カカオ豆", 
     image: File.open("./app/assets/images/image3.jpg")
+    )
+    
+Address.create!(
+    end_user_id: "1",
+    zip_code: "123-4567",
+    address: "大阪府大阪市1-2",
+    name: "田中"
     )

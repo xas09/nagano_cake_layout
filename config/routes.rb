@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'orders/show'
+  end
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/complete'
+  end
   get 'cart_items/index'
   devise_for :admin, controllers: {
     sessions: 'admins/sessions',
@@ -17,6 +25,7 @@ Rails.application.routes.draw do
     resources :end_users, only: [:index] 
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
+    resources :orders, only: [:show, :update]
   end
   
   scope module: :public do
@@ -29,6 +38,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     delete "cart_items/destroy_all" => "cart_items#destroy_all"
     resources :cart_items, only: [:index, :create, :update, :destroy]
+    resources :orders, only: [:new, :create]
+    post "orders/confirm" => "orders#confirm"
+    get "orders/complete" => "orders#complete"
   end
   
 end
