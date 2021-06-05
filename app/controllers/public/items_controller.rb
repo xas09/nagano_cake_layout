@@ -10,5 +10,4 @@ class Public::ItemsController < Public::ApplicationController
     @new_cart_item = CartItem.new
   end
 
-
 end

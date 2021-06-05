@@ -40,18 +40,23 @@
 </table>
 <div>
     <p>支払い方法</p>
-    <p><%= @order.payment_method %></p>
+    <p><%= @neworder.payment_method_i18n %></p>
 </div>
 <div>
     <p>お届け先</p>
-    <p><%= @order.zip_code %><%= @order.address %></p>
-    <p><%= @order.name %></p>
+    <p><%= @neworder.zip_code %> <%= @neworder.address %></p>
+    <p><%= @neworder.name %></p>
 </div>
 <div>
-    <%= link_to "注文を確定する", orders_path, method: :post, data: { confirm: "注文を確定しますか？" }, class:"btn btn-sm btn-success" %>
+    <%= form_with model:@neworder, url:orders_path, local:true do |f| %>
+        <%= f.hidden_field :end_user_id, value: current_end_user.id %>
+        <%= f.hidden_field :zip_code, value: @neworder.zip_code %>
+        <%= f.hidden_field :address, value: @neworder.address %>
+        <%= f.hidden_field :name, value: @neworder.name %>
+        <%= f.hidden_field :payment_method, value: @neworder.payment_method %>
+        <%= f.hidden_field :shipping_fee, value: 800 %>
+        <%= f.hidden_field :payment, value: @sum %>
+        <%= f.submit "注文を確定する", data: { confirm: "注文を確定しますか？" }, class:"btn btn-sm btn-success" %>
+    <% end %>
+    <!--< %= link_to "注文を確定する", orders_path, method: :post, data: { confirm: "注文を確定しますか？" }, class:"btn btn-sm btn-success" %>-->
 </div>
-以下の内容が表示されること
-カート内商品の情報
-注文情報入力画面で入力した、支払い方法・お届け先
-送料・商品合計・請求金額
-購入を確定するをクリック後、確認ダイアログを表示する。OKを押すと注文作成処理がなされ、完了後、注文完了画面に遷移。

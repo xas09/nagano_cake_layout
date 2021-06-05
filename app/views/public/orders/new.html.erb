@@ -1,24 +1,25 @@
 <P>注文情報入力</P>
-<%= form_with model:@order, url:orders_confirm_path, local:true do |f| %>
+<%= form_with model:@neworder, url:orders_confirm_path, local:true do |f| %>
 <div>
   <label>支払い方法</label>
-  <label><%= f.radio_button :payment_method, "0" %>クレジットカード</label>
-  <label><%= f.radio_button :payment_method, "1" %>銀行振込</label>
+  <label><%= f.radio_button :payment_method, 0 %>クレジットカード</label>
+  <label><%= f.radio_button :payment_method, 1 %>銀行振込</label>
 </div>
 <div>
   <label>お届け先</label>
-  <label><%= f.radio_button :address, @user.address %>ご自身の住所</label>
-  <label><%= @user.address %></label>
+  <div><%= f.radio_button :address_option, 0 %>ご自身の住所</div>
+  <div>〒<%= @user.zip_code %> <%= @user.address %></div>
+  <div><%= @user.first_name %><%= @user.last_name  %></div>
 </div>
 <div>
-  <!--<label>< %= radio_button :address, do %>登録先住所から選択</label>-->
-  <label><%= f.collection_select :address, @user.addresses.all.map{|a| ["#{a.zip_code} #{a.address} #{a.name}", a.address] }, :second,:first %></label>
-  <!--<label>< %= f.radio_button %>新しいお届け先</label>-->
+  <div><%= f.radio_button :address_option, 1 %>登録先住所から選択</div>
+  <div><%= f.collection_select :address_id, @user.addresses.all.map{|a| ["#{a.zip_code} #{a.address} #{a.name}", a.id] }, :second,:first %></div>
 </div>
 <div>
-  <label>郵便番号(ハイフンなし）<%= f.text_field :zip_code %></label>
-  <label>住所<%= f.text_field :address %></label>
-  <label>宛名<%= f.text_field :name %></label>
+  <div><%= f.radio_button :address_option, 2 %>新しいお届け先</div>
+    <div>郵便番号(ハイフンなし）<%= f.text_field :zip_code %></div>
+    <div>住所<%= f.text_field :address %></div>
+    <div>宛名<%= f.text_field :name %></div>
 </div>
 <div><%= f.submit "確認画面へ進む", class:"btn btn-sm btn-info" %></div>
 <% end %>
