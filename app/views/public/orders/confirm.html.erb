@@ -17,7 +17,8 @@
             <td><%= cart_item.item.name %></td>
             <td><%= 1.1*cart_item.item.price_without_tax %></td>
             <td><%= cart_item.amount %></td>
-            <td><%= @sum += 1.1*cart_item.item.price_without_tax*cart_item.amount %></td>
+            <td><%= 1.1*cart_item.item.price_without_tax*cart_item.amount %></td>
+            <% @sum += 1.1*cart_item.item.price_without_tax*cart_item.amount %>
         </tr>
         <% end %>
     </tbody>

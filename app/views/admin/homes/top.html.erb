@@ -1,7 +1,23 @@
-管理者側のヘッダーに、注文履歴一覧画面へのリンクを追加する
-以下の内容が表示されること
-注文日時(日本時間)
-購入したエンドユーザのフルネーム
+<h4>注文履歴一覧</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <td>購入日時</td>
+            <td>購入者</td>
+            <td>注文個数</td>
+            <td>注文ステータス</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+            <td><%= link_to order.created_at, admin_order_path(order) %></td>
+            <td><%= order.end_user.last_name %><%= order.end_user.first_name %></td>
+            <!--<td>< %= %></td>-->
+            <td><%= order.status_i18n %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+注文日時(日本時間）
 注文個数(注文した商品の個数合計)
-注文ステータス
-注文日時に、各注文の詳細画面へのリンクを付与すること。
