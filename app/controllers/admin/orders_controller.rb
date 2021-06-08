@@ -6,7 +6,6 @@ class Admin::OrdersController < Admin::ApplicationController
   end
 
   def update
-    params[:order][:status] = params[:order][:status].to_i
     order = Order.find(params[:id])
     order.update(order_params)
     if order.status == "paid"

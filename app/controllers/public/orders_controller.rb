@@ -1,4 +1,5 @@
 class Public::OrdersController < Public::ApplicationController
+  before_action :ensure_status, except: [:complete]
 
   def new
     @neworder = Order.new
@@ -48,6 +49,12 @@ class Public::OrdersController < Public::ApplicationController
   end
 
 private
+
+  def ensure_status
+    if current_end_user.cart_items.present? == false
+      redirect_to items_path
+    end
+  end
 
   def order_params
     params.require(:order).permit(:end_user_id, :zip_code, :address, :name, :shipping_fee, :payment_method, :payment)
