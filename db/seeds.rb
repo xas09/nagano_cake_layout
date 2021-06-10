@@ -36,9 +36,21 @@ Item.create!(
     image: File.open("./app/assets/images/image3.jpg")
     )
     
+EndUser.create!(
+    email: "a@a",
+    password: "aaaaaa",
+    last_name: "nakamura",
+    first_name: "yuto",
+    last_name_kana: "なかむら",
+    first_name_kana: "ゆうと",
+    zip_code: "1112222",
+    address: "神奈川県横浜市３−５",
+    phone_number: "07421112222"
+    )
+    
 Address.create!(
     end_user_id: "1",
     zip_code: "123-4567",
     address: "大阪府大阪市1-2",
-    name: "田中"
+    name: "田中太郎"
     )

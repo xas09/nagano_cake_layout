@@ -24,9 +24,6 @@ class Public::OrdersController < Public::ApplicationController
       @neworder.address = params[:order][:address]
       @neworder.name = params[:order][:name]
     end
-    # @neworder.end_user_id = current_end_user.id
-    # @neworder.shipping_fee = 800
-    # @neworder.payment = @sum+=800
   end
 
   def create
