@@ -43,6 +43,12 @@
             </ul>
           </div>
         </div>
+        <div>
+        <%= form_with url:admin_items_path, method: :get, local:true do |f| %>
+          <%= f.text_field :search %>
+          <%= f.submit "検索" %>
+        <% end %>
+        </div>
       </nav>
     </header>
     <main>
